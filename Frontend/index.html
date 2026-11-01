@@ -1705,6 +1705,7 @@
     }
     .value-triad-grid,.formal-pipeline-card,.search-container,.mission-footer-box{display:none!important}
     .hero-proof-card{display:none!important}.deck-card-dashed{display:none!important}.feature-deck-grid{margin-top:0}
+    .feature-deck-grid{grid-template-columns:repeat(3,minmax(0,1fr))!important}
     #studioDropzone .dropzone-text-title,#studioDropzone .dropzone-text-hint,#studioDropzone .supported-pill-list{display:none}#studioDropzone{min-height:150px;justify-content:center}.dropzone-upload-icon{transform:scale(1.25);box-shadow:0 12px 28px rgba(58,174,128,.18)}
     .benchmark-comparison-stage{grid-template-columns:minmax(0,1.7fr) minmax(280px,.8fr)!important}.waterfall-row-list{transform:scaleY(1.12);transform-origin:top left;margin-bottom:16px}.diff-container-card .change-text{display:none}.diff-container-card .change-card{min-height:62px}.diff-container-card .change-card h4{margin-bottom:0}
     .run-studio-card .supported-pill-list{margin-top:4px}.benchmark-lab-card .card-header-bar p,.diff-container-card .card-header-bar p{display:none}.diff-container-card .annotation-note{display:none}.diff-container-card .change-text{font-size:.68rem;line-height:1.35}.guardrail-verdict-card .mini-compare{opacity:.8}
@@ -2698,7 +2699,9 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
       // Put the proof-bearing execution topology in the first viewport flow.
       const topology = document.getElementById('topologyPipelineSection');
       const deck = document.querySelector('.feature-deck-grid');
-      if (topology && deck) deck.parentNode.insertBefore(deck, topology);
+      const runStudio = document.getElementById('runStudioSection');
+      if (deck && runStudio) runStudio.parentNode.insertBefore(deck, runStudio);
+      if (topology && runStudio) runStudio.parentNode.insertBefore(topology, runStudio);
       setupCanvas();
       await loadData();
       await checkApiHealth();
