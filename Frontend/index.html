@@ -1704,6 +1704,7 @@
       font-family: var(--font-mono);
     }
     .value-triad-grid,.formal-pipeline-card{display:none!important}
+    .run-studio-card .supported-pill-list{margin-top:4px}.benchmark-lab-card .card-header-bar p,.diff-container-card .card-header-bar p{display:none}.diff-container-card .annotation-note{display:none}.diff-container-card .change-text{font-size:.68rem;line-height:1.35}.guardrail-verdict-card .mini-compare{opacity:.8}
     .hero-proof-card{display:grid;grid-template-columns:1fr 1.35fr;gap:34px;align-items:center;margin:8px 0 24px;padding:25px 28px;border:1px solid rgba(29,42,61,.1);border-radius:24px;background:linear-gradient(120deg,#f8fbff 0%,#fff 58%,#f1fff7 100%);box-shadow:0 18px 45px rgba(27,45,73,.09);overflow:hidden;position:relative}
     .hero-proof-card:after{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-100px;top:-150px;background:rgba(112,225,162,.16);filter:blur(2px);pointer-events:none}
     .hero-proof-copy h2{font-size:1.55rem;margin:5px 0 6px;letter-spacing:-.04em}.hero-proof-copy p{font-size:.78rem;color:var(--text-sub);max-width:390px;line-height:1.55}.proof-legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:16px;font-size:.65rem;color:var(--text-sub);font-family:var(--font-mono)}.proof-legend span{display:flex;align-items:center;gap:5px}.dot{width:8px;height:8px;border-radius:50%;display:inline-block}.baseline-dot{background:#a9b5c4}.target-dot{background:#f5b84b}.optimized-dot{background:#45c98b}
@@ -1867,7 +1868,7 @@
       <!-- Hero Heading Statement (Requirement 7) -->
       <div class="hero-heading-block">
         <h1 class="hero-h1">Turn any PyTorch training job into a measured CPU acceleration plan.</h1>
-        <p class="hero-subtext">A generic, hardware-aware developer platform that profiles host silicon, audits memory layouts, and tunes PyTorch loops on commodity CPUs without modifying model architecture or dataset splits.</p>
+        <p class="hero-subtext">Measure your model. Keep the architecture. Train faster on CPU.</p>
         
         <!-- Three-Part Value Cards -->
         <div class="value-triad-grid">
@@ -1967,13 +1968,13 @@
             <span class="section-kicker">WORKFLOW · RUN STUDIO</span>
             <h3 class="section-headline">Start a Measured Acceleration Analysis</h3>
             <p style="font-size: 0.78rem; color: var(--text-sub); margin-top: 2px;">
-              Upload any model checkpoint or training script. Accel profiles host hardware and returns an executable acceleration plan in ~200ms.
+              Upload a model. Get a measured CPU plan.
             </p>
           </div>
           <div class="btn-row">
             <button class="secondary-btn" onclick="loadVerifiedDemoSample()">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-              Load CompactSeg Sample
+              Try sample
             </button>
             <button class="primary-btn" onclick="triggerAnalyzeUpload()">
               Analyze & Generate Plan ↗
@@ -2130,7 +2131,7 @@
         </div>
 
         <div style="font-size: 0.72rem; color: var(--text-muted); font-family: var(--font-mono); border-top: 1px solid var(--border-light); padding-top: 10px;">
-          ⚡ Note: Analysis inspects model metadata and profiles kernel layouts in ~200ms without modifying files. Full 15-epoch training is run via <code>optimized_cpu.py</code>.
+          ⚡ Local analysis only. Your files stay on this machine.
         </div>
       </section>
 
@@ -2268,7 +2269,7 @@
             <span class="section-kicker">FORMAL ENGINEERING AUDIT</span>
             <h3 class="card-box-title">6-Stage Decision & Verification Pipeline</h3>
             <p style="font-size: 0.74rem; color: var(--text-sub); margin-top: 2px;">
-              How Accel evaluates an incoming model from upload to verified zero-risk code export.
+              Upload → profile → validate → export.
             </p>
           </div>
           <span class="table-chip-badge green">Pipeline Verified</span>
@@ -2334,7 +2335,7 @@
             <span class="section-kicker">MEASURED VERIFICATION</span>
             <h3 class="card-box-title">Benchmark Laboratory: Baseline vs Optimized</h3>
             <p style="font-size: 0.74rem; color: var(--text-sub); margin-top: 2px;">
-              Measured on identical hardware (Intel i7-13620H) and identical dataset (Landslide4Sense, 15 epochs).
+              Same hardware, data, and training settings.
             </p>
           </div>
           <div class="btn-row">
@@ -2422,7 +2423,7 @@
               </svg>
               <div class="iou-gauge-copy">
                 <span class="iou-gauge-title">Accuracy fully retained</span>
-                <span class="iou-gauge-sub">Weights, loss, LR &amp; splits untouched.</span>
+                <span class="iou-gauge-sub">No accuracy tradeoff.</span>
                 <span class="iou-gauge-val">0.1236 IoU &middot; +0.0043 vs baseline</span>
               </div>
             </div>
@@ -2439,7 +2440,7 @@
             <span class="section-kicker">DEVELOPER INTEGRATION</span>
             <h3 class="card-box-title">The Entire Integration Plan</h3>
             <p style="font-size: 0.74rem; color: var(--text-sub); margin-top: 2px;">
-              Drop-in wrapper. Exactly 3 lines inserted into your standard PyTorch training loop.
+              Three-line PyTorch integration.
             </p>
           </div>
           <div class="btn-row">
@@ -2509,7 +2510,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
         <!-- "What changes in my code?" plain explanation -->
         <div>
-          <h4 style="font-size: 0.82rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">What actually changes under the hood?</h4>
+          <h4 style="font-size: 0.82rem; font-weight: 800; color: var(--text-main); margin-bottom: 8px;">What changes?</h4>
           <div class="code-changes-explainer-grid">
             <div class="change-explainer-card">
               <div class="change-code-snippet">Line 1: accel = accelerate(...)</div>
