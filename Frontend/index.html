@@ -1793,10 +1793,6 @@
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           Recent Runs
         </a>
-        <a class="menu-item" data-target="missionSection" onclick="navTo('missionSection')">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-          Disaster Mission
-        </a>
       </nav>
 
       <!-- Sidebar Bottom Action -->
@@ -2696,6 +2692,11 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
 
     /* ── INITIALIZATION ───────────────────────────────────────── */
     async function initApp() {
+      const nav = document.querySelector('.sidebar-menu');
+      if (nav) {
+        const order = ['overview','topologyPipelineSection','runStudioSection','waterfallSection','diffSection','historySection'];
+        order.forEach(id => { const item = nav.querySelector(`[data-target="${id}"]`); if (item) nav.appendChild(item); });
+      }
       // Put the proof-bearing execution topology in the first viewport flow.
       const topology = document.getElementById('topologyPipelineSection');
       const deck = document.querySelector('.feature-deck-grid');
@@ -3193,7 +3194,8 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     function navTo(id) {
       const el = document.getElementById(id);
       if (el) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 20);
+        window.scrollTo({ top, behavior: 'smooth' });
         setActiveMenuItem(id);
       }
     }
@@ -3201,23 +3203,23 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     function setActiveMenuItem(targetId) {
       document.querySelectorAll('.menu-item').forEach(item => {
         item.classList.toggle('active', item.dataset.target === targetId);
+        if (item.dataset.target === targetId) { const menu=item.closest('.sidebar-menu'); menu?.scrollTo({ top: Math.max(0, item.offsetTop - menu.clientHeight * .35), behavior: 'smooth' }); }
       });
     }
 
     function setupScrollSpy() {
-      const sections = ['overview', 'runStudioSection', 'topologyPipelineSection', 'waterfallSection', 'diffSection', 'historySection', 'missionSection'];
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            setActiveMenuItem(entry.target.id);
-          }
-        });
-      }, { threshold: 0.3 });
-
-      sections.forEach(id => {
-        const el = document.getElementById(id);
-        if (el) observer.observe(el);
-      });
+      const sections = ['overview', 'topologyPipelineSection', 'runStudioSection', 'waterfallSection', 'diffSection', 'historySection']
+        .map(id => document.getElementById(id)).filter(Boolean);
+      let ticking = false;
+      const update = () => {
+        ticking = false;
+        const probe = window.scrollY + Math.min(window.innerHeight * .32, 260);
+        let current = sections[0];
+        sections.forEach(section => { if (section.offsetTop <= probe) current = section; });
+        if (current) setActiveMenuItem(current.id);
+      };
+      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      update();
     }
 
     /* ── KEYBOARD SHORTCUTS & SEARCH (Cmd/Ctrl+K) ─────────────── */
