@@ -3199,8 +3199,9 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     function navTo(id) {
       const el = document.getElementById(id);
       if (el) {
-        const top = Math.max(0, el.getBoundingClientRect().top + window.scrollY - 20);
-        window.scrollTo({ top, behavior: 'smooth' });
+        const canvas = document.querySelector('.main-canvas');
+        const top = Math.max(0, el.offsetTop - 24);
+        if (canvas) canvas.scrollTo({ top, behavior: 'smooth' });
         setActiveMenuItem(id);
       }
     }
@@ -3216,15 +3217,16 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
     function setupScrollSpy() {
       const sections = ['overview', 'topologyPipelineSection', 'runStudioSection', 'waterfallSection', 'diffSection', 'historySection']
         .map(id => document.getElementById(id)).filter(Boolean);
+      const canvas = document.querySelector('.main-canvas');
       let ticking = false;
       const update = () => {
         ticking = false;
-        const probe = window.scrollY + Math.min(window.innerHeight * .32, 260);
+        const probe = (canvas ? canvas.scrollTop : window.scrollY) + 180;
         let current = sections[0];
         sections.forEach(section => { if (section.offsetTop <= probe) current = section; });
         if (current) setActiveMenuItem(current.id);
       };
-      window.addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
+      (canvas || window).addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
       update();
     }
 
