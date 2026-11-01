@@ -2696,6 +2696,11 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
       if (nav) {
         const order = ['overview','topologyPipelineSection','runStudioSection','waterfallSection','diffSection','historySection'];
         order.forEach(id => { const item = nav.querySelector(`[data-target="${id}"]`); if (item) nav.appendChild(item); });
+        nav.querySelectorAll('.menu-item').forEach(item => item.addEventListener('click', event => {
+          event.preventDefault();
+          event.stopPropagation();
+          navTo(item.dataset.target);
+        }));
       }
       // Put the proof-bearing execution topology in the first viewport flow.
       const topology = document.getElementById('topologyPipelineSection');
@@ -3199,6 +3204,7 @@ optimizer = torch.optim.Adam(model.parameters(), lr=1e-3)
         setActiveMenuItem(id);
       }
     }
+    window.navTo = navTo;
 
     function setActiveMenuItem(targetId) {
       document.querySelectorAll('.menu-item').forEach(item => {
