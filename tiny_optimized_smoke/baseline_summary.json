@@ -1,0 +1,23 @@
+{
+  "device": "cpu",
+  "cpu_specific_optimizations": {
+    "interop_threads": "1",
+    "memory_format": "channels_last (validated CPU Conv2d layout)",
+    "threads": "unset (PyTorch default -- no tuning applied)",
+    "amp": "disabled"
+  },
+  "epochs_run": 1,
+  "best_val_iou": 0.027371762792608934,
+  "total_wall_seconds": 3.43546724319458,
+  "avg_epoch_seconds": 3.4229300022125244,
+  "min_epoch_seconds": 3.4229300022125244,
+  "max_epoch_seconds": 3.4229300022125244,
+  "hyperparams": {
+    "epochs": 1,
+    "batch_size": 16,
+    "lr": 0.001,
+    "base_channels": 8,
+    "pos_weight": 15.0,
+    "num_workers": 0
+  }
+}

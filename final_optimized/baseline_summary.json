@@ -1,0 +1,25 @@
+{
+  "device": "cpu",
+  "cpu_specific_optimizations": {
+    "interop_threads": "1",
+    "memory_format": "channels_last (validated CPU Conv2d layout)",
+    "threads": "4 (explicit override, UNVALIDATED -- pass sample_target+loss_fn to validate)",
+    "amp": "disabled"
+  },
+  "epochs_run": 15,
+  "best_val_iou": 0.12361019019037485,
+  "total_wall_seconds": 150.75338768959045,
+  "avg_epoch_seconds": 10.047856680552165,
+  "min_epoch_seconds": 8.406196594238281,
+  "max_epoch_seconds": 11.966050386428833,
+  "hyperparams": {
+    "model": "compact",
+    "cache_ram": true,
+    "epochs": 15,
+    "batch_size": 16,
+    "lr": 0.001,
+    "base_channels": 16,
+    "pos_weight": 15.0,
+    "num_workers": 0
+  }
+}

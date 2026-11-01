@@ -1,0 +1,21 @@
+{
+  "device": "cpu",
+  "cpu_specific_optimizations": {
+    "threads": "10 (explicit override, UNVALIDATED -- pass sample_target+loss_fn to validate)",
+    "amp": "disabled"
+  },
+  "epochs_run": 1,
+  "best_val_iou": 0.06615427974611521,
+  "total_wall_seconds": 18.955240488052368,
+  "avg_epoch_seconds": 18.88827610015869,
+  "min_epoch_seconds": 18.88827610015869,
+  "max_epoch_seconds": 18.88827610015869,
+  "hyperparams": {
+    "epochs": 1,
+    "batch_size": 16,
+    "lr": 0.001,
+    "base_channels": 32,
+    "pos_weight": 15.0,
+    "num_workers": 2
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "device": "cpu",
+  "torch_threads": 10,
+  "cpu_specific_optimizations": "none (honest baseline)",
+  "epochs_run": 15,
+  "best_val_iou": 0.1605,
+  "total_wall_seconds": 5053.5,
+  "avg_epoch_seconds": 336.9,
+  "min_epoch_seconds": 303.4,
+  "max_epoch_seconds": 356.8,
+  "hyperparams": {
+    "epochs": 15,
+    "batch_size": 16,
+    "lr": 0.001,
+    "base_channels": 32,
+    "pos_weight": 15.0,
+    "num_workers": 2
+  },
+  "note": "Manually stopped after epoch 16 produced a 5319.8s anomalous epoch (CPU almost certainly hijacked by sleep/screen-lock/background process, not real training time). Reconstructed from the console log for epochs 1-15, which is internally consistent (303-357s range, no gaps). Baseline deliberately capped at 15 epochs for hackathon time budget -- best_val_iou still improving at epoch 15 (no early-stop triggered), so optimized runs should also use --epochs 15 for a fair apples-to-apples comparison, not the full 40."
+}

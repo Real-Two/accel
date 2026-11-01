@@ -1,0 +1,19 @@
+{
+  "device": "cpu",
+  "torch_threads": 10,
+  "cpu_specific_optimizations": "none (honest baseline)",
+  "epochs_run": 15,
+  "best_val_iou": 0.11934843903407455,
+  "total_wall_seconds": 445.0313527584076,
+  "avg_epoch_seconds": 29.666514269510905,
+  "min_epoch_seconds": 24.84337592124939,
+  "max_epoch_seconds": 33.393940448760986,
+  "hyperparams": {
+    "epochs": 15,
+    "batch_size": 16,
+    "lr": 0.001,
+    "base_channels": 16,
+    "pos_weight": 15.0,
+    "num_workers": 2
+  }
+}

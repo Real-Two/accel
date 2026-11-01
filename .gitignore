@@ -1,0 +1,17 @@
+__pycache__/
+*.pyc
+.venv/
+venv/
+patch_cache/
+split/
+*/best_model.pt
+*/last_model.pt
+*/checkpoints/
+*.npy
+*.npz
+*.onnx
+*.zip
+*.pt
+*.pth
+*.log
+.DS_Store

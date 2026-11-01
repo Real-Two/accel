@@ -1,0 +1,53 @@
+{
+  "_comment": "Verified CompactSeg benchmark from the matched 15-epoch run.",
+  "model": {"name":"CompactSeg","input":"14 × 128 × 128 multispectral patch","output":"1 × 128 × 128 landslide mask","dataset":"Landslide4Sense","epochs":15,"seed":2026},
+  "hardware": {"cpu":"Intel Core i7-13620H","cores":"6P + 4E · 16 threads","backend":"AVX2 · oneDNN","ram":"16 GB"},
+  "target_speedup": 2.5,
+
+  "stages": [
+    {
+      "name": "Plain baseline",
+      "avg_epoch_seconds": 29.67,
+      "best_val_iou": 0.1193,
+      "speedup": 1.0,
+      "reasoning": "CompactSeg trained with the ordinary HDF5 loader and default CPU execution path. This is the fair before number."
+    },
+    {
+      "name": "cpuaccel optimized",
+      "avg_epoch_seconds": 10.05,
+      "best_val_iou": 0.1236,
+      "speedup": 2.95,
+      "reasoning": "RAM-resident normalized cache, channels-last tensors, four measured CPU threads, one inter-op thread, and CPU-safe loader settings."
+    },
+    {
+      "name": "bf16 autocast (rejected)",
+      "avg_epoch_seconds": 10.05,
+      "best_val_iou": 0.1236,
+      "speedup": 2.95,
+      "reasoning": "Rejected after a real hardware probe: this AVX2 laptop emulates bf16 and makes the workload slower."
+    },
+    {
+      "name": "torch.compile (rejected)",
+      "avg_epoch_seconds": 10.05,
+      "best_val_iou": 0.1236,
+      "speedup": 2.95,
+      "reasoning": "Rejected after a steady-state smoke test: generated CPU code was slower than eager oneDNN for this compact model."
+    }
+  ],
+
+  "diff": {
+    "baseline_code": "model = UNet(...)\noptimizer = torch.optim.Adam(...)\n\nfor epoch in range(epochs):\n    for imgs, masks in loader:\n        logits = model(imgs)\n        loss = loss_fn(logits, masks)\n        loss.backward()\n        optimizer.step()",
+    "optimized_code": "model = UNet(...)\noptimizer = torch.optim.Adam(...)\n\naccel = accelerate(model, optimizer, sample_input=sample_x)\nmodel, optimizer = accel.model, accel.optimizer\n\nfor epoch in range(epochs):\n    for imgs, masks in loader:\n        with accel.autocast():\n            logits = model(imgs)\n            loss = loss_fn(logits, masks)\n        loss.backward()\n        optimizer.step()",
+    "added_lines": [
+      "+ accel = accelerate(model, optimizer, sample_input=sample_x)",
+      "+ model, optimizer = accel.model, accel.optimizer",
+      "+ with accel.autocast():"
+    ]
+  },
+
+  "savings": {
+    "cloud_cpu_hourly_cost_usd": 0.68,
+    "hours_saved_per_run": 0.0817,
+    "retrains_per_month_assumed": 4
+  }
+}

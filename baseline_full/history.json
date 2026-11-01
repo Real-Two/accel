@@ -1,0 +1,17 @@
+[
+  {"epoch": 1, "train_loss": 0.6269, "val_loss": 0.5513, "val_iou": 0.0909, "val_f1": 0.1430, "epoch_seconds": 303.4, "train_seconds": 289.6, "val_seconds": 13.8},
+  {"epoch": 2, "train_loss": 0.5013, "val_loss": 0.5260, "val_iou": 0.1205, "val_f1": 0.1844, "epoch_seconds": 339.1, "train_seconds": 325.5, "val_seconds": 13.5},
+  {"epoch": 3, "train_loss": 0.4720, "val_loss": 0.5865, "val_iou": 0.0542, "val_f1": 0.0924, "epoch_seconds": 356.8, "train_seconds": 341.4, "val_seconds": 15.4},
+  {"epoch": 4, "train_loss": 0.4578, "val_loss": 0.5110, "val_iou": 0.1164, "val_f1": 0.1775, "epoch_seconds": 344.0, "train_seconds": 329.7, "val_seconds": 14.3},
+  {"epoch": 5, "train_loss": 0.4382, "val_loss": 0.3909, "val_iou": 0.1240, "val_f1": 0.1886, "epoch_seconds": 354.4, "train_seconds": 341.1, "val_seconds": 13.3},
+  {"epoch": 6, "train_loss": 0.4359, "val_loss": 0.4651, "val_iou": 0.0746, "val_f1": 0.1201, "epoch_seconds": 350.4, "train_seconds": 336.9, "val_seconds": 13.5},
+  {"epoch": 7, "train_loss": 0.4160, "val_loss": 0.4147, "val_iou": 0.0940, "val_f1": 0.1471, "epoch_seconds": 349.5, "train_seconds": 335.8, "val_seconds": 13.7},
+  {"epoch": 8, "train_loss": 0.3954, "val_loss": 0.3968, "val_iou": 0.1459, "val_f1": 0.2169, "epoch_seconds": 333.6, "train_seconds": 320.2, "val_seconds": 13.4},
+  {"epoch": 9, "train_loss": 0.3938, "val_loss": 0.2847, "val_iou": 0.1185, "val_f1": 0.1838, "epoch_seconds": 332.7, "train_seconds": 317.4, "val_seconds": 15.2},
+  {"epoch": 10, "train_loss": 0.3876, "val_loss": 0.4256, "val_iou": 0.1231, "val_f1": 0.1866, "epoch_seconds": 332.7, "train_seconds": 319.5, "val_seconds": 13.2},
+  {"epoch": 11, "train_loss": 0.3920, "val_loss": 0.3731, "val_iou": 0.1530, "val_f1": 0.2220, "epoch_seconds": 329.7, "train_seconds": 315.9, "val_seconds": 13.8},
+  {"epoch": 12, "train_loss": 0.3735, "val_loss": 0.4043, "val_iou": 0.0909, "val_f1": 0.1430, "epoch_seconds": 330.0, "train_seconds": 316.4, "val_seconds": 13.6},
+  {"epoch": 13, "train_loss": 0.3779, "val_loss": 0.2648, "val_iou": 0.1251, "val_f1": 0.1862, "epoch_seconds": 334.3, "train_seconds": 320.9, "val_seconds": 13.4},
+  {"epoch": 14, "train_loss": 0.3623, "val_loss": 0.2741, "val_iou": 0.1510, "val_f1": 0.2228, "epoch_seconds": 333.4, "train_seconds": 318.5, "val_seconds": 14.9},
+  {"epoch": 15, "train_loss": 0.3669, "val_loss": 0.2288, "val_iou": 0.1605, "val_f1": 0.2285, "epoch_seconds": 329.5, "train_seconds": 315.0, "val_seconds": 14.5}
+]
